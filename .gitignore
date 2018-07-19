@@ -1,0 +1,4 @@
+.idea
+__init__.py
+*.pyc
+test.py
