@@ -1,0 +1,115 @@
+.main_top{
+    height: 72px;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
+    margin: 0;
+    padding:0;
+    background: #fff;
+}
+.main_content{
+    position: relative;
+    left:15%;
+    width:70%;
+    margin-top: 36px;
+    box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
+    /*background: #d8e1fd;*/
+    border-radius: 6px;
+    /*height: 400px;*/
+}
+.search-panel-body{
+    padding: 0 15px;
+}
+.search-condition{
+    width: 100%;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    background: #fff;
+}
+#demo{
+    background: #fff;
+    position: absolute;
+    top: 100%;
+    float: right;
+    z-index: 999999999;
+}
+#logo a,.logo{
+    display: block;
+    height: 72px;
+    width: 140px;
+    background: url(/image/20080.png) center center no-repeat;
+    text-indent: 100%;
+    overflow: hidden;
+}
+body{
+    padding:0;
+    margin:0;
+    font-size: 16px;
+}
+.text-Vertical{
+    line-height: 72px;
+}
+.nav-items{
+    text-align: center;
+}
+.nav-form,.nav-exit{
+    text-align: end;
+}
+.nav-items .btn,.btn-primary,btn-default{
+    border: 0;
+}
+.glyphicon{
+    color:#337ab7;
+}
+.dropdown-menu{
+    min-width: 80px;
+}
+.scope-input{
+    min-width: 66px;
+    max-width: 85px;
+    /*border-left:0;*/
+    /*border-top: 0;*/
+    /*border-right: 0;*/
+
+    height: 34px;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+
+    webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+.search-panel{
+    margin-bottom: 0px
+}
+.search-panel panel-body{
+    padding: 8px;
+}
+.search-title{
+    text-align: start
+}
+.search-toolbar{
+    text-align: end
+}
+.search-form{
+    padding: 15px;
+}
+.level-scope{
+    margin-top: 15px
+}
+.search-bottom-toolbar{
+    margin-top: 15px;text-align: center;
+}
+.search-reset-button{
+    margin: 0 20px;
+}
+.button-plus-minus{
+    text-align: end;margin: 15px
+}

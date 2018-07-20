@@ -1,0 +1,86 @@
+.item-text{
+    color: #337ab7;
+}
+.item-text:hover,.item-text:focus{
+    color: #23527c;
+    cursor: pointer;
+}
+.input-group-addon{
+    color: #8ecdfc !important;
+}
+.main_top{
+    height: 72px;
+    display: block;
+    box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
+    margin: 0;
+    padding:0;
+    background: #fff;
+}
+.main_content{
+    position: relative;
+    left:30%;
+    width:40%;
+    margin-top: 50px;
+    box-shadow: 0 4px 8px 0 rgba(7,17,27,.1);
+    background: #d8e1fd;
+    border-radius: 6px;
+    /*height: 400px;*/
+}
+.forget-regist{
+    padding:0 4px;
+}
+.forgetPassword{
+    text-align: left;
+}
+.registAccount{
+    text-align: right;
+}
+.content_form{
+    padding: 20px;
+}
+.tip_form_group{
+    margin-bottom: 0px !important;
+}
+.content_form .form-group{
+    margin-bottom: 30px;
+}
+.input_tip{
+    line-height: 30px;
+    padding-left: 2px;
+    color: red;
+    font-size: 14px;
+    font-weight: bold;
+    height:30px;
+    clear: both;
+}
+body{
+    margin:0;
+    padding: 0;
+    background-color: #8ecdfc !important;
+}
+.common-modal-label{
+    color: #337ab7 !important;
+}
+.tip_modal_body{
+    padding: 0px !important;
+}
+.regist_tip_content i{
+    top: 4px !important;
+}
+.regist_tip_content{
+    padding: 50px;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+}
+.copyright{
+    font-size: 14px;
+    text-align: center;
+    margin-top: 8px;
+    color: #93999F;
+    line-height: 24px;
+    position: absolute;
+    width:40%;
+    left:30%;
+    bottom: 36px;
+}

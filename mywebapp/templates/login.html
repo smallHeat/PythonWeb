@@ -1,0 +1,309 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>登录</title>
+
+    <!-- 页面图标 -->
+    <link rel="icon" type="image/x-icon" href="./../static/images/favicon.ico"/>
+
+    <!-- 引入css文件 -->
+    <link rel="stylesheet" href="./../static/css/index.css"/>
+    <!-- bootstrap 样式 -->
+    <link rel="stylesheet" type="text/css" href="./../static/css/bootstrap.min.css">
+    <!-- bootstrap 插件依赖jquery -->
+    <script src="./../static/js/jquery-3.2.1.min.js"></script>
+    <!-- bootstrap js -->
+    <script src="./../static/js/bootstrap.min.js"></script>
+
+    <!-- 引入输入校验文件 -->
+    <script src="./../static/js/index.js"></script>
+</head>
+<body>
+<div>
+    <div class="main_top">
+        <div>
+            <div class="top_logo"><img src="./../static/images/20080.png" title="SSMDemo"></div>
+        </div>
+    </div>
+    <div class="main_content">
+        <div class="content_form">
+            <form role="form" id="login_form">
+                <!-- 用户名输入框 -->
+                <div class="form-group tip_form_group">
+                    <label for="username" class="sr-only">username</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-user"></i></span>
+                        <input type="text" class="form-control input-lg" placeholder="username" name="username" id="username" oninput="onInput('username');"/>
+                    </div>
+                </div>
+
+                <!-- 用户名输入框提示框 -->
+                <div class="input_tip" id="username_tip">
+                </div>
+
+                <!-- 密码输入框 -->
+                <div class="form-group tip_form_group">
+                    <label for="password" class="sr-only">password</label>
+                    <div class="input-group">
+                        <span class="input-group-addon"><i class="glyphicon glyphicon-lock"></i></span>
+                        <input type="password" class="form-control input-lg" placeholder="password" name="password" id="password" oninput="onInput('password')"/>
+                    </div>
+                </div>
+
+                <!-- 密码输入框提示框 -->
+                <div class="input_tip" id="password_tip">
+                </div>
+
+                <!-- 忘记密码 注册账号 -->
+                <div class="form-group">
+                    <div class="row forget-regist">
+                        <div class="col-md-6 forgetPassword">
+                            <span class="item-text" data-toggle="modal" data-target="#forgetModal" onclick="clearForm(0)">忘记密码？</span>
+                        </div>
+                        <div class="col-md-6 registAccount">
+                            <span class="item-text" data-toggle="modal" data-target="#registModal" onclick="clearForm(1)">注册账号</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- 登录 -->
+                <div class="form-group">
+                    <button id="login_btn" type="button" class="btn btn-success btn-lg btn-block" onclick="login()">登录</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- 注册用户 -->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="registModal" tabindex="-1" role="dialog" aria-labelledby="registModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title common-modal-label" id="registModalLabel"><i class="glyphicon glyphicon-user"></i>&nbsp;注册用户</h4>
+            </div>
+            <div class="modal-body">
+                <div class="regist-dialog-content">
+                    <form role="form" class="form-horizontal" id="regist_form">
+                        <!-- 用户名输入框 -->
+                        <div class="form-group tip_form_group">
+                            <label for="username_regist" class="col-sm-2 control-label">用户名</label>
+                            <div class="col-sm-10">
+                                <input type="text" class="form-control" placeholder="请输入用户名" id="username_regist" name="username_regist" oninput="onInput('username_regist');"/>
+                            </div>
+                        </div>
+
+                        <!-- 用户名输入框提示框 -->
+                        <div class="row">
+                            <!-- 占位用 -->
+                            <div class="col-md-2 col-sm-2"></div>
+                            <div class="col-md-10 col-sm-10">
+                                <div class="input_tip" id="username_regist_tip"></div>
+                            </div>
+                        </div>
+
+
+                        <!-- 密码输入框 -->
+                        <div class="form-group tip_form_group">
+                            <label for="password_regist" class="col-sm-2 control-label">密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" placeholder="请输入密码" id="password_regist" name="password_regist" oninput="onInput('password_regist')"/>
+                            </div>
+                        </div>
+
+                        <!-- 密码输入框提示框 -->
+                        <div class="row">
+                            <!-- 占位用 -->
+                            <div class="col-md-2 col-sm-2"></div>
+                            <div class="col-md-10 col-sm-10">
+                                <div class="input_tip" id="password_regist_tip"></div>
+                            </div>
+                        </div>
+
+                        <!-- 确认密码输入框 -->
+                        <div class="form-group tip_form_group">
+                            <label for="password2_regist" class="col-sm-2 control-label">密码确认</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" placeholder="请再次输入密码" id="password2_regist" name="password2_regist" oninput="onInput('password2_regist')"/>
+                            </div>
+                        </div>
+
+                        <!-- 确认密码输入框提示框 -->
+                        <div class="row">
+                            <!-- 占位用 -->
+                            <div class="col-md-2 col-sm-2"></div>
+                            <div class="col-md-10 col-sm-10">
+                                <div class="input_tip" id="password2_regist_tip"></div>
+                            </div>
+                        </div>
+
+                        <!-- 超级密码 -->
+                        <div class="form-group tip_form_group">
+                            <label for="super_password_regist" class="col-sm-2 control-label">超级密码</label>
+                            <div class="col-sm-10">
+                                <input type="password" class="form-control" placeholder="请输入超级密码" id="super_password_regist" name="super_password_regist" oninput="onInput('super_password_regist')"/>
+                            </div>
+                        </div>
+
+                        <!-- 超级密码输入框提示框 -->
+                        <div class="row">
+                            <!-- 占位用 -->
+                            <div class="col-md-2 col-sm-2"></div>
+                            <div class="col-md-10 col-sm-10">
+                                <div class="input_tip" id="super_password_regist_tip"></div>
+                            </div>
+                        </div>
+
+                    </form>
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="regist_btn" class="btn btn-primary" onclick="registUser()">注册</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearForm(1)">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 注册提示 -->
+
+<!-- 注册提示模态框（Modal） -->
+<div class="modal fade" id="registTipModal" tabindex="-1" role="dialog" aria-labelledby="registTipModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content" id="regist_tip_modal">
+            <div class="modal-header" id="regist_tip_header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="registTipModalLabel"><i class="glyphicon glyphicon-user"></i>&nbsp;注册用户</h4>
+            </div>
+            <div class="modal-body tip_modal_body">
+                <div class="regist_tip_content" id="regist_tip_content">
+                </div>
+            </div>
+            <div class="modal-footer" id="regist_tip_footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 忘记密码 -->
+<!-- 模态框（Modal） -->
+<div class="modal fade" id="forgetModal" tabindex="-1" role="dialog" aria-labelledby="forgetModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title common-modal-label" id="forgetModalLabel"><i class="glyphicon glyphicon-lock"></i>&nbsp;忘记密码</h4>
+            </div>
+            <div class="modal-body">
+                <form class="form-horizontal" id="forget_form">
+
+                    <!-- 找回密码 - 用户名 -->
+                    <div class="form-group tip_form_group">
+                        <label for="username_forget" class="col-sm-2 control-label">用户名</label>
+                        <div class="col-sm-10">
+                            <input type="text" class="form-control" id="username_forget" name="username_forget" placeholder="请输入用户名" oninput="onInput('username_forget')"/>
+                        </div>
+                    </div>
+
+                    <!-- 用户名输入框提示框 -->
+                    <div class="row">
+                        <!-- 占位用 -->
+                        <div class="col-md-2 col-sm-2"></div>
+                        <div class="col-md-10 col-sm-10">
+                            <div class="input_tip" id="username_forget_tip"></div>
+                        </div>
+                    </div>
+
+                    <!-- 超级密码 -->
+                    <div class="form-group tip_form_group">
+                        <label for="super_password_forget" class="col-sm-2 control-label">超级密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="super_password_forget" name="super_password_forget" oninput="onInput('super_password_forget')" placeholder="请输入用户名"/>
+                        </div>
+                    </div>
+
+                    <!-- 超级密码输入框提示框 -->
+                    <div class="row">
+                        <!-- 占位用 -->
+                        <div class="col-md-2 col-sm-2"></div>
+                        <div class="col-md-10 col-sm-10">
+                            <div class="input_tip" id="super_password_forget_tip"></div>
+                        </div>
+                    </div>
+
+                    <!-- 新的密码 -->
+                    <div class="form-group tip_form_group">
+                        <label for="new_password" class="col-sm-2 control-label">新的密码</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="new_password" name="new_password" placeholder="请输入新的密码" oninput="onInput('new_password')"/>
+                        </div>
+                    </div>
+
+                    <!-- 密码输入框提示框 -->
+                    <div class="row">
+                        <!-- 占位用 -->
+                        <div class="col-md-2 col-sm-2"></div>
+                        <div class="col-md-10 col-sm-10">
+                            <div class="input_tip" id="new_password_tip"></div>
+                        </div>
+                    </div>
+
+
+                    <!-- 密码确认 -->
+                    <div class="form-group tip_form_group">
+                        <label for="confirm_password" class="col-sm-2 control-label">密码确认</label>
+                        <div class="col-sm-10">
+                            <input type="password" class="form-control" id="confirm_password" name="confirm_password" placeholder="请再次输入新的密码" oninput="onInput('confirm_password')"/>
+                        </div>
+                    </div>
+
+                    <!-- 密码确认输入框提示框 -->
+                    <div class="row">
+                        <!-- 占位用 -->
+                        <div class="col-md-2 col-sm-2"></div>
+                        <div class="col-md-10 col-sm-10">
+                            <div class="input_tip" id="confirm_password_tip"></div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" id="forget_btn" class="btn btn-primary" onclick="resetPassword()">修改密码</button>
+                <button type="button" class="btn btn-default" data-dismiss="modal" onclick="clearForm(0)">取消</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 注册提示 -->
+
+<!-- 注册提示模态框（Modal） -->
+<div class="modal fade" id="forgetTipModal" tabindex="-1" role="dialog" aria-labelledby="forgetTipModalLabel" aria-hidden="true" data-backdrop="static" data-keyboard="false">
+    <div class="modal-dialog">
+        <div class="modal-content" id="forget_tip_modal">
+            <div class="modal-header" id="forget_tip_header">
+                <button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
+                <h4 class="modal-title" id="forgetTipModalLabel"><i class="glyphicon glyphicon-user"></i>&nbsp;注册用户</h4>
+            </div>
+            <div class="modal-body tip_modal_body">
+                <div class="regist_tip_content" id="forget_tip_content">
+                </div>
+            </div>
+            <div class="modal-footer" id="forget_tip_footer">
+                <button type="button" class="btn btn-default" data-dismiss="modal">确定</button>
+            </div>
+        </div><!-- /.modal-content -->
+    </div><!-- /.modal -->
+</div>
+
+<!-- 版权信息 -->
+<div class="copyright">
+    &copy;&nbsp;2018&nbsp;mydemo.com&nbsp;版权所有&nbsp;盗版必究
+</div>
+</body>
+</html>
