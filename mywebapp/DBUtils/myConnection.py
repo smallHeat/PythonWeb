@@ -1,18 +1,20 @@
 #-*- coding:utf-8 -*-
 import MySQLdb
+import MySQLdb.cursors
+import config
 
 # 数据库工具类
 # 获取连接和游标
 class myConnection(object):
-    def __init__(self,dict):
-        self.__params = dict
+    def __init__(self):
         self.__connection = None
 
     # 初始化连接
     def __init_connect(self):
         if self.__connection == None:
-            d = self.__params
-            self.__connection = MySQLdb.Connect(host=d['host'],port=d['port'],user=d['user'],passwd=d['passwd'],db=d['db'],charset=d['charset']) # 得到连接
+            self.__connection = MySQLdb.Connect(host=config.HOST,port=config.PORT,user=config.USER,
+                                                passwd=config.PASSWD,db=config.DB,charset=config.CHARSET,
+                                                cursorclass=MySQLdb.cursors.DictCursor) # 得到连接
 
     # 获取连接
     def getconn(self):

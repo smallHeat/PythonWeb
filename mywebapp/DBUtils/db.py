@@ -23,7 +23,6 @@ def find(char, str):
 
 # 将sql的?替换成对应的参数 list.insert(index,item)
 def getRealSql(strs, args):
-    print strs,args
     length = len(args)
     while length > 0:
         length -= 1
@@ -41,8 +40,7 @@ class DB:
 
     def __initProp(self):
         if self.conn == None:
-            args = self.__readProp("db.properties")  # 读取配置文件信息
-            myConn = myConnection(args) # 获取连接
+            myConn = myConnection() # 获取连接
             self.conn = myConn.getconn()
             self.cursor = self.conn.cursor()
 
@@ -61,19 +59,16 @@ class DB:
     def select(self, sql, *args):
         # 这里执行查询语句
         # 判断 是否以select开头
-        list = []
         if sql.strip()[0:6] == "select":
             try:
                 self.cursor.execute(sql)
-                rs = self.cursor.fetchall()# 得到结果集
-                for t in rs:
-                    dict = {"id":t[0],"username":t[1],"password":t[2]}
-                    list.append(dict)
+                tuple = self.cursor.fetchall()# 得到结果集
+                return tuple
             except Exception as e:
                 print e
         else:
             print "sql语句格式不正确......is not select Statement..."
-        return list
+            return None
 
     # 返回影响的行数
     @execute_all
@@ -94,22 +89,3 @@ class DB:
         else:
             print "sql语句格式不正确......"
         return count
-
-    # 获取配置文件参数，并转化成参数
-    def __readProp(self, filepath):
-        dict = {}
-        try:
-            with open(filepath, 'r') as f:
-                for line in f.readlines():
-                    if '#' in line :
-                        continue
-                    list = line.strip().split("=")
-                    key = list[0]
-                    value = list[1]
-                    if key == "port":
-                        value = int(value)
-                    dict[key] = value
-        except Exception as e:
-            print "读取文件异常,请检查文件是否存在"
-            print e
-        return dict
