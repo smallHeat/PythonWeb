@@ -1,6 +1,7 @@
 # -*- coding:utf-8 -*-
 from urls import *
 from handler import *
+import mytools
 import web
 
 '''
@@ -15,7 +16,7 @@ app = web.application(urls, globals())
 #创建session对象
 web.config.debug = False
 web.config.session_parameters['timeout'] = 300, #24 * 60 * 60, # 24 hours   in seconds
-web.config.session_parameters['ignore_expiry'] = False
+web.config.session_parameters['ignore_expiry'] = True
 
 if web.config.get('_session') is None:
     print "初始化session...."
@@ -29,7 +30,7 @@ def session_hook():
     print "注册session"
     print session
     web.ctx.session = session
-    print web.ctx.session
+    print web.ctx.session.status
 app.add_processor(web.loadhook(session_hook))
 
 # 程序入口

@@ -1,3 +1,4 @@
+$def with(user)
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -15,7 +16,7 @@
         html,body{
             height: 100%;
             width: 100%;
-            background: #8ecdfc;
+            background: url(./../static/images/theme5.jpg)/*#747475;*/
         }
         .content_item{
             /*height: 500px;*/
@@ -32,64 +33,116 @@
             cursor: pointer;
             padding-left: 12px;
             position: relative;
+            border-radius: 6px;
+            margin-bottom: 6px;
         }
         .left_item:hover{
-            background: #efefef;
+            background: #6b7176; /* hover颜色 bgcolor:2b333b */
             border-radius: 6px;
         }
+        .input-item{
+            padding: 12px 6px;
+            border-radius: 4px;
+        }
+        .input-item:hover{
+            background: #6b7176;
+        }
+        .mybreadcrumb{
+            padding: 8px 15px;
+            margin-bottom: 20px;
+            list-style: none;
+            background-color: #6b7176;
+            border-radius: 4px;
+            color: #fff;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .icon-item{
+            font-weight: bold;
+            font-size: 20px;
+        }
+        .label{
+            padding:.4em;
+        }
+        .mynavbar .navbar-nav{
+            font-size: 14px;
+            font-weight: bold;
+        }
+        .mynavbar .navbar-nav .active a{
+            background: #fff !important;
+            color:#2b333b !important;
+        }
+        .mynavbar .navbar-nav>li>a{
+            color:#fff !important;
+        }
+        .mynavbar .navbar-nav>li>a:hover{
+            background: #fff !important;
+            color:#2b333b !important;
+        }
+        .person_info{
+            cursor: pointer;
+        }
     </style>
+
+    <!-- js监控操作 -->
+    <script type="text/javascript">
+        //顶部navbar js事件
+        function clikHandle4Top(n){
+            //清除之前为active的
+            jQuery("#top_navbar li").each(function () {
+                jQuery(this).attr("class","")
+            })
+            //设置class 为active
+            jQuery("#top_navbar>li:nth-child(" + (n + 1) + ")").attr('class','active')
+        }
+
+        //左侧信息栏
+        function clikHandle4Left(n) {
+            //清除之前的
+            jQuery("#select-item div").each(function () {
+                jQuery(this).css("background","#2b333b")
+            })
+            //设置background 为指定颜色
+            jQuery("#select-item>div:nth-child(" + (n + 1) + ")").css("background","#6b7176")
+        }
+    </script>
 
 </head>
 <body>
     <div class="main_container container-fluid">
         <!-- header -->
-        <div class="header">
+        <div class="header" >
             <nav class="navbar navbar-default navbar-fixed-top" role="navigation">
-                <div class="container-fluid">
-                <div class="navbar-header">
-                    <a class="navbar-brand" href="#">菜鸟教程</a>
-                </div>
-                <div>
-                    <ul class="nav navbar-nav">
-                        <li class="active"><a href="#">iOS</a></li>
-                        <li><a href="#">SVN</a></li>
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                Java <b class="caret"></b>
-                            </a>
-                            <ul class="dropdown-menu">
-                                <li><a href="#">jmeter</a></li>
-                                <li><a href="#">EJB</a></li>
-                                <li><a href="#">Jasper Report</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">分离的链接</a></li>
-                                <li class="divider"></li>
-                                <li><a href="#">另一个分离的链接</a></li>
-                            </ul>
-                        </li>
-                    </ul>
-                </div>
+                <div class="container-fluid" style="background: #2b333b;">
+                    <div class="navbar-header">
+                        <a class="navbar-brand" style="color: #fff" href="#">我的PythonDemo</a>
+                    </div>
+                    <div class="mynavbar">
+                        <ul class="nav navbar-nav" style="padding-left: 14%;" id="top_navbar">
+                            <li class="active"><a href="javascript:clikHandle4Top(0)">我的</a></li>
+                            <li><a href="javascript:clikHandle4Top(1)">我的blog</a></li>
+                            <li><a href="javascript:clikHandle4Top(2)">日志报表</a></li>
+                        </ul>
+                    </div>
                 </div>
             </nav>
         </div>
 
         <!-- content -->
-        <div class="content row">
+        <div class="content row" style="color: #fff">
             <div class="content_item left col-md-3">
                 <div class="panel panel-primary">
-                    <div class="panel-heading">
-                        <h3 class="panel-title">个人信息</h3>
-                    </div>
-                    <div class="panel-body">
+                    <div class="panel-body" style="background: #2b333b;">
                         <div class="personal">
 
                             <div class="person_info">
-                                <i class="glyphicon glyphicon-user">&nbsp;UserName&nbsp;</i>
-                                <div style="clear:both;height: 55px;text-align: left;line-height: 55px;vertical-align:middle;">
-                                    博主很懒，什么都没留下.......
+                                <i class="glyphicon glyphicon-user icon-item" style="padding: 8px 0">&nbsp;${user['name']}</i>
+                                <div style="clear:both;height: 55px;text-align: left;line-height: 55px;vertical-align:middle;color: #6b7176">
+                                    ${user['userdesc']}
                                 </div>
-                                <div>
-                                    <span class="label label-default">很懒很天真</span>
+                                <div style="padding: 2px 0">
+                                    <span class="userlabel label ${user['userlabel_class']}">${user['userlabel']}</span>
+                                    &nbsp;&nbsp;<span class="skilllabel label label-primary">${user['skilllabel']}</span>
                                 </div>
                             </div>
 
@@ -97,23 +150,52 @@
                     </div>
                 </div>
 
-                <div class="panel panel-primary">
+                <div class="panel panel-primary" style="background: #2b333b">
                     <div class="panel-body">
-                        <div class="person_class" >
-                            <div class="left_item">个人信息</div>
-                            <div class="left_item">消息中心&nbsp;<span class="badge">50</span></div>
-                            <div class="left_item">我的博客</div>
+                        <div class="person_class" id="select-item">
+                            <div class="left_item" style="background: #6b7176;" onclick="clikHandle4Left(0)">
+                                个人信息
+                            </div>
+                            <div class="left_item" onclick="clikHandle4Left(1)">
+                                    消息中心&nbsp;<span class="badge" style="background: red">50</span>
+                            </div>
+                            <div class="left_item" onclick="clikHandle4Left(2)">
+                                我的博客
+                            </div>
+                            <div class="left_item" onclick="clikHandle4Left(3)">
+                                查看日志报表
+                            </div>
                         </div>
                     </div>
                 </div>
                
             </div>
 
-            <div class="content_item right col-md-9">
-                <div class="jumbotron" style="height: 100%">
-                  <h1>Hello, world!</h1>
-                  <p>...</p>
-                  <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more</a></p>
+            <div class="content_item right col-md-9" >
+                <div class="jumbotron" style="background: #2b333b;padding-top: 30px">
+                    <form>
+
+                        <ol class="mybreadcrumb">
+                          <li class="active">个人信息</li>
+                        </ol>
+                        
+                        <div class="input-item">
+                            姓名: ${user['name']}
+                        </div>
+
+                        <div class="input-item">
+                            职业: ${user['jobtype']}
+                        </div>
+
+                        <div class="input-item">
+                            工作经验: ${user['jobage']}年
+                        </div>
+
+                        <div class="input-item">
+                            性别: ${user['sex']}
+                        </div>
+
+                    </form>
                 </div>
             </div>
         </div>

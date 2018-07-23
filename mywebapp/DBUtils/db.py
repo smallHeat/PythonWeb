@@ -10,6 +10,7 @@ def execute_all(f):
         # 判断sql中有没有?
         if "?" in sql:
             sql = getRealSql(find("?",sql), args)
+            print "ppp",sql
         return f(self, sql)
     return fn
 
@@ -59,6 +60,7 @@ class DB:
     def select(self, sql, *args):
         # 这里执行查询语句
         # 判断 是否以select开头
+        print sql
         if sql.strip()[0:6] == "select":
             try:
                 self.cursor.execute(sql)

@@ -34,7 +34,7 @@ function registUser() {
         if(password_regist == password2_regist && super_password_regist != password_regist){
             var params = jQuery("#regist_form").serialize();//参数序列化
             jQuery.ajax({
-                url:"/main/regist",
+                url:"/registHandle",
                 data:params,
                 type:"post",
                 success:function (result) {
@@ -107,7 +107,7 @@ function resetPassword() {
         if(super_password_forget != new_password && new_password == confirm_password){
             var params = jQuery("#forget_form").serialize();
             jQuery.ajax({
-                url:"/main/resetPassword",
+                url:"/forPasswdHandle",
                 data:params,
                 type:"post",
                 success:function (result) {
@@ -233,7 +233,7 @@ function login() {
         //字符长度全部限制为11位以下
         var params = jQuery("#login_form").serialize();
         jQuery.ajax({
-            url:"/main/login",
+            url:"/loginHandle",
             data:params,
             type:"post",
             success:function (result) {
@@ -241,7 +241,7 @@ function login() {
                 var jsonObject = JSON.parse(result);//先解析成json对象
                 var status = jsonObject.status;
                 if(status != "-1"){
-                    window.location.href = "/main/main?result=" + status;
+                    window.location.href = "/index?result=" + status;
                 }else{
                     tip("#username","用户名或密码错误！");
                     jQuery("#password").val("");

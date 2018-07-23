@@ -9,5 +9,8 @@
 urls = (
     '/list','list',
     '/login','login',
+    '/loginHandle','loginHandle',
+    '/registHandle','registHandle',
+    '/forPasswdHandle','forPasswdHandle',
     '/(.*)', 'index'
 )
