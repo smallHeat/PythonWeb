@@ -173,7 +173,10 @@ $def with(user)
 
             <div class="content_item right col-md-9" >
                 <div class="jumbotron" style="background: #2b333b;padding-top: 30px">
-                    <form>
+                    <!-- <frame>
+                        
+                    </frame> -->
+                    <form role="form" id="person_info_form">
 
                         <ol class="mybreadcrumb">
                           <li class="active">个人信息</li>
@@ -181,6 +184,10 @@ $def with(user)
                         
                         <div class="input-item">
                             姓名: ${user['name']}
+                        </div>
+
+                        <div class="input-item">
+                            个人描述: ${user['userdesc']}
                         </div>
 
                         <div class="input-item">
